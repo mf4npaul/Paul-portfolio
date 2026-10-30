@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Paul Victor | Software Developer in Lagos</title>
+    <meta
+      name="description"
+      content="Paul Mfonobong Victor is a software developer in Lagos, Nigeria, building responsive web applications with a growing focus on full-stack engineering, real-time systems and cloud technologies."
+    />
+    <meta name="theme-color" content="#17181b" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Paul Victor" />
+    <meta property="og:title" content="Paul Victor | Software Developer in Lagos" />
+    <meta
+      property="og:description"
+      content="Responsive web applications and full-stack projects by Paul Mfonobong Victor."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Apply the saved theme before first paint so the page never flashes the wrong colours. -->
+    <script>
+      try {
+        var t = localStorage.getItem('pv-theme');
+        if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>This portfolio needs JavaScript to run. Please enable it in your browser settings.</noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

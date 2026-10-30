@@ -1,0 +1,135 @@
+@import 'tailwindcss';
+
+/* ─────────────  DESIGN TOKENS  ─────────────
+   Change colours here and the whole site follows.
+   Dark is the default; [data-theme='light'] overrides it. */
+:root,
+[data-theme='dark'] {
+  --bg: #17181b;
+  --surface: #1f2024;
+  --surface-2: #28292e;
+  --border: #36383e;
+  --text: #ede8dc;
+  --muted: #a9a397;
+  --accent: #e5a93d;
+  --accent-ink: #1a1405;
+  --ok: #7cc49b;
+  --warn: #e5a93d;
+  --info: #8fb0de;
+  --danger: #f08f84;
+  --shadow: 0 18px 50px -22px rgb(0 0 0 / 0.65);
+  color-scheme: dark;
+}
+
+[data-theme='light'] {
+  --bg: #efeee9;
+  --surface: #f8f7f3;
+  --surface-2: #e4e2db;
+  --border: #cbc8bd;
+  --text: #1b1c1f;
+  --muted: #5b5850;
+  --accent: #9a6200;
+  --accent-ink: #fff8ea;
+  --ok: #2b7650;
+  --warn: #8a5a00;
+  --info: #31558c;
+  --danger: #b0372a;
+  --shadow: 0 18px 40px -24px rgb(40 35 20 / 0.35);
+  color-scheme: light;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--border);
+  --color-ink: var(--text);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-ok: var(--ok);
+  --color-warn: var(--warn);
+  --color-info: var(--info);
+  --color-danger: var(--danger);
+
+  --font-display: 'Bricolage Grotesque Variable', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Figtree Variable', 'Segoe UI', system-ui, sans-serif;
+
+  --radius-card: 1.25rem;
+  --radius-control: 0.75rem;
+  --shadow-card: var(--shadow);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+  p { text-wrap: pretty; }
+  ::selection { background: var(--accent); color: var(--accent-ink); }
+
+  /* Clear keyboard focus everywhere */
+  :focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+}
+
+@layer components {
+  .container-page {
+    width: 100%;
+    max-width: 76rem;
+    margin-inline: auto;
+    padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+  }
+  .section-pad { padding-block: clamp(4rem, 9vw, 7.5rem); }
+
+  /* Fine grid used in the hero and page headers */
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, color-mix(in srgb, var(--text) 6%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in srgb, var(--text) 6%, transparent) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 70% 70% at 70% 30%, #000 20%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse 70% 70% at 70% 30%, #000 20%, transparent 75%);
+  }
+  .glow {
+    background: radial-gradient(ellipse 50% 50% at 75% 20%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 70%);
+  }
+}
+
+/* Smooth colour change when the theme is toggled (class is added briefly by the theme hook) */
+html.theme-transition,
+html.theme-transition *,
+html.theme-transition *::before,
+html.theme-transition *::after {
+  transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease, fill 0.35s ease, stroke 0.35s ease !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
